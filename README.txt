@@ -71,7 +71,7 @@ very big elements and mass functions).
 
 2) The main class is MassFunction. The others (plausibility, belief and commonality)
 are not really implemented because as they  require values on the entire powerset,
-they are at best slow and in most cases unpracticle.
+they are at best slow and in most cases unpractical.
 
 3) This package does not rely on anything else than the standard library to prevent
 incompatibilities. It would be great to keep it that way.
