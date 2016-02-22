@@ -1,0 +1,13 @@
+1 element
+Seated
+3 conversions
+1 element
+yes
+0.1
+1 element
+no
+0.7
+2 elements
+yes
+no
+0.2

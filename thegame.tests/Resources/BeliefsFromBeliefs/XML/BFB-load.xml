@@ -1,0 +1,55 @@
+<belief-from-beliefs>
+
+	<frame name="Sleeping">
+		<state>yes</state>
+		<state>no</state>
+	</frame>
+
+	<evidential-mappings>
+
+		<evidential-mapping>
+			<subframe name="Posture">
+				<state>Seated</state>
+				<state>LyingDown</state>
+				<state>Standing</state>
+			</subframe>
+
+			<mapping-vector>
+				<from element="LyingDown"/>
+				<to element="yes">0.7</to>
+				<to element="yes no">0.2</to>
+				<to element="no">0.1</to>
+			</mapping-vector>
+			<mapping-vector>
+				<from element="Seated"/>
+				<to element="yes">0.1</to>
+				<to element="yes no">0.2</to>
+				<to element="no">0.7</to>
+			</mapping-vector>
+			<mapping-vector>
+				<from element="Standing"/>
+				<to element="no">1.0</to>
+			</mapping-vector>
+			<mapping-vector>
+				<from element="LyingDown Seated"/>
+				<to element="yes">0.3</to>
+				<to element="yes no">0.7</to>
+			</mapping-vector>
+			<mapping-vector>
+				<from element="LyingDown Standing"/>
+				<to element="yes no">1.0</to>
+			</mapping-vector>
+			<mapping-vector>
+				<from element="Standing Seated"/>
+				<to element="yes no">0.7</to>
+				<to element="no">0.3</to>
+			</mapping-vector>
+			<mapping-vector>
+				<from element="LyingDown Standing Seated"/>
+				<to element="yes no">1.0</to>
+			</mapping-vector>
+		</evidential-mapping>
+
+	</evidential-mappings>
+
+</belief-from-beliefs>

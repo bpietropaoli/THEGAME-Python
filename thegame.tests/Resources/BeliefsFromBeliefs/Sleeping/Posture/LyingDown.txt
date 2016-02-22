@@ -1,0 +1,13 @@
+1 element
+LyingDown
+3 conversions
+1 element
+yes
+0.7
+1 element
+no
+0.1
+2 elements
+yes
+no
+0.2

@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<belief-from-sensors>
+	<frame name="test">
+		<state>A</state>
+		<state>B</state>
+		<state>C</state>
+	</frame>
+
+	<sensor-beliefs>
+		<sensor-belief name="S1Set">
+			<point>
+				<value>100.0</value>
+				<mass set="A">0.0</mass>
+				<mass set="B">0.75</mass>
+				<mass set="C">0.25</mass>
+				<mass set="A B">0.0</mass>
+			</point>
+			<point>
+				<value>200.0</value>
+				<mass set="A">0.25</mass>
+				<mass set="B">0.5</mass>
+				<mass set="C">0.10</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>300.0</value>
+				<mass set="A">0.75</mass>
+				<mass set="B">0.10</mass>
+				<mass set="C">0.0</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>400.0</value>
+				<mass set="A">0.25</mass>
+				<mass set="B">0.5</mass>
+				<mass set="C">0.1</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>500.0</value>
+				<mass set="A">0.0</mass>
+				<mass set="B">0.75</mass>
+				<mass set="C">0.25</mass>
+				<mass set="A B">0.0</mass>
+			</point>
+		</sensor-belief>
+		
+		<sensor-belief name="S3Set">
+			<options>
+				<option name="tempo-specificity">1</option>
+			</options>
+			<point>
+				<value>100.0</value>
+				<mass set="A">0.0</mass>
+				<mass set="B">0.75</mass>
+				<mass set="C">0.25</mass>
+				<mass set="A B">0.0</mass>
+			</point>
+			<point>
+				<value>200.0</value>
+				<mass set="A">0.25</mass>
+				<mass set="B">0.5</mass>
+				<mass set="C">0.10</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>300.0</value>
+				<mass set="A">0.75</mass>
+				<mass set="B">0.10</mass>
+				<mass set="C">0.0</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>400.0</value>
+				<mass set="A">0.25</mass>
+				<mass set="B">0.5</mass>
+				<mass set="C">0.1</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>500.0</value>
+				<mass set="A">0.0</mass>
+				<mass set="B">0.75</mass>
+				<mass set="C">0.25</mass>
+				<mass set="A B">0.0</mass>
+			</point>
+		</sensor-belief>
+		
+		<sensor-belief name="S4Set">
+			<options>
+				<option name="tempo-fusion">1</option>
+			</options>
+			<point>
+				<value>100.0</value>
+				<mass set="A">0.0</mass>
+				<mass set="B">0.75</mass>
+				<mass set="C">0.25</mass>
+				<mass set="A B">0.0</mass>
+			</point>
+			<point>
+				<value>200.0</value>
+				<mass set="A">0.25</mass>
+				<mass set="B">0.5</mass>
+				<mass set="C">0.10</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>300.0</value>
+				<mass set="A">0.75</mass>
+				<mass set="B">0.10</mass>
+				<mass set="C">0.0</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>400.0</value>
+				<mass set="A">0.25</mass>
+				<mass set="B">0.5</mass>
+				<mass set="C">0.1</mass>
+				<mass set="A B">0.15</mass>
+			</point>
+			<point>
+				<value>500.0</value>
+				<mass set="A">0.0</mass>
+				<mass set="B">0.75</mass>
+				<mass set="C">0.25</mass>
+				<mass set="A B">0.0</mass>
+			</point>
+		</sensor-belief>
+	</sensor-beliefs>
+
+	<sensors>
+		<sensor name="S1" belief="S1Set" />
+		<sensor name="S2" belief="S1Set" />
+		<sensor name="S3" belief="S3Set" />
+		<sensor name="S4" belief="S4Set" />
+	</sensors>
+
+</belief-from-sensors>
