@@ -1,4 +1,4 @@
-# THE (GAME).Py
+# THeory of Evidence (in a Language Adapted to Many Embedded systems) - Python version
 
 This package is the Python implementation of THEGAME.
 
