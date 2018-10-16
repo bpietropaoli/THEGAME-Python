@@ -4,7 +4,7 @@
 # thegame.tests_massfunction.py                                                #
 # ---------------------------------------------------------------------------- #
 # Author : Bastien Pietropaoli                                                 #
-# Contact: Bastien.Pietropaoli@cit.ie                                          #
+# Contact: Bastien.Pietropaoli@insight-centre.org                              #
 #          Bastien.Pietropaoli@gmail.com                                       #
 # ---------------------------------------------------------------------------- #
 # This module only provides a main that executes short tests to check that     #

@@ -2,7 +2,7 @@
 # thegame.construction.frombeliefs.py                                          #
 # ---------------------------------------------------------------------------- #
 # Author : Bastien Pietropaoli                                                 #
-# Contact: Bastien.Pietropaoli@cit.ie                                          #
+# Contact: Bastien.Pietropaoli@insight-centre.org                              #
 #          Bastien.Pietropaoli@gmail.com                                       #
 # ---------------------------------------------------------------------------- #
 # This module contains the classes to transfer belief from one frame of discer-#

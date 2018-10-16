@@ -4,7 +4,7 @@
 # thegame.benchmark_massfunction.py                                            #
 # ---------------------------------------------------------------------------- #
 # Author : Bastien Pietropaoli                                                 #
-# Contact: Bastien.Pietropaoli@cit.ie                                          #
+# Contact: Bastien.Pietropaoli@insight-centre.org                              #
 #          Bastien.Pietropaoli@gmail.com                                       #
 # ---------------------------------------------------------------------------- #
 # This module runs benchmarks for the massfunction classes. This is a good way #

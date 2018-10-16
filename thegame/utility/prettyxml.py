@@ -2,7 +2,7 @@
 # thegame.utility.prettyxml.py                                                 #
 # ---------------------------------------------------------------------------- #
 # Author : Bastien Pietropaoli                                                 #
-# Contact: Bastien.Pietropaoli@cit.ie                                          #
+# Contact: Bastien.Pietropaoli@insight-centre.org                              #
 #          Bastien.Pietropaoli@gmail.com                                       #
 # ---------------------------------------------------------------------------- #
 # This module contains methods to write pretty xml files without the need for  #

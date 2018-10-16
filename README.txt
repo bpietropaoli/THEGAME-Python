@@ -2,16 +2,16 @@
 # THE (GAME).Py                                                                #
 # ---------------------------------------------------------------------------- #
 # Author : Bastien Pietropaoli                                                 #
-# Contact: Bastien.Pietropaoli@cit.ie                                          #
+# Contact: Bastien.Pietropaoli@insight-centre.org                              #
 #          Bastien.Pietropaoli@gmail.com                                       #
 # ---------------------------------------------------------------------------- #
 # This package provides the basics of the belief functions theory with modules #
 # to manage set-theoretic operations (in element.py) and mass functions (in    #
 # massfunction.py).                                                            #
 # ---------------------------------------------------------------------------- #
-# Version developed under Python 3.4.2 and adapted for Python 2.7.10.          #
-# The version for Python 2.7.10 should be compatible with PyPy for improved    #
-# performance.
+# This package has been implemented and tested with and for Python 3.4+.       #
+# If you need a version for Python 2.7, let me know via email, I'll see what I #
+# can do.                                                                      #
 ################################################################################
 
 This package is the Python implementation of THE GAME.
@@ -19,7 +19,7 @@ This package is the Python implementation of THE GAME.
 		http://bpietropaoli.github.io/THEGAME/
 
 This is a library to work on the belief functions theory (also called theory of 
-evidence or Dempster-Shafer's theory). This Python version should provide the 
+evidence or Dempster-Shafer theory). This Python version should provide the 
 same functionalities, especially, it can load and save the exact same models as 
 the C library.
 
@@ -70,7 +70,7 @@ They are usually faster than their safe equivalent (especially when working with
 very big elements and mass functions).
 
 2) The main class is MassFunction. The others (plausibility, belief and commonality)
-are not really implemented because as they  require values on the entire powerset,
+are not really implemented because they require values on the entire powerset,
 they are at best slow and in most cases unpractical.
 
 3) This package does not rely on anything else than the standard library to prevent

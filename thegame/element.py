@@ -2,7 +2,7 @@
 # thegame.element.py                                                           #
 # ---------------------------------------------------------------------------- #
 # Author : Bastien Pietropaoli                                                 #
-# Contact: Bastien.Pietropaoli@cit.ie                                          #
+# Contact: Bastien.Pietropaoli@insight-centre.org                              #
 #          Bastien.Pietropaoli@gmail.com                                       #
 # ---------------------------------------------------------------------------- #
 # This module contains all the classes to manage focal elements within the     #
@@ -17,6 +17,11 @@
 #     belief functions theory.                                                 #
 #   - DiscreteElement: A class providing elements defined on finite and dis-   #
 #     crete frames of discernment; this is the classic belief functions theory.#
+#   - IntervalElement: A class providing elements defined as intervals on the  #
+#     real numbers. It implements the full Element API and is thus compatible  #
+#     with the mass functions in the same way. Though, be aware that some of   #
+#     the operations defined on classic belief functions might provide NaN     #
+#     results when applied to infinite intervals.                              #
 ################################################################################
 
 import re
