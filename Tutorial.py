@@ -4,7 +4,7 @@
 # Tutorial.py (for THEGAME - Python version)                                   #
 # ---------------------------------------------------------------------------- #
 # Author : Bastien Pietropaoli                                                 #
-# Contact: Bastien.Pietropaoli@cit.ie                                          #
+# Contact: Bastien.Pietropaoli@insight-centre.org                              #
 #          Bastien.Pietropaoli@gmail.com                                       #
 # ---------------------------------------------------------------------------- #
 # This module is meant to be used as a short tutorial to learn how to use the  #
@@ -21,7 +21,7 @@
 # might be on its way...).                                                     #
 ################################################################################
 
-# The belief functions theory (also called Dempster-Shafer's theory or theory of
+# The belief functions theory (also called Dempster-Shafer theory or theory of
 # evidence assigns masses to states defined within a frame of discernment. Let's
 # thus start with the definition of "elements" that will be used as focal elements
 # within the mass functions.
@@ -29,12 +29,13 @@
 # The elements are within the module thegame.element.
 import thegame.element as element
 
-# It provides two main classes:
+# It provides three main classes:
 #  - Element: An abstract class providing the API of the set-theoretic operations
 #             the focal elements must implement in order to be usable within the
 #             mass functions.
 #  - DiscreteElement: A class to represent discrete focal elements, which corresponds
 #                     to the classic theory.
+#  - IntervalElement: A class to represent real number intervals as focal elements.
 
 # Let's see how we can build DiscreteElements.
 # The discrete elements here are encoded as numbers (for details on how this might
