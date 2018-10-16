@@ -101,7 +101,6 @@ if __name__ == '__main__':
     function = "str(DiscreteElement) / DiscreteElement.__str__(self)"
     print("Test of " + function + " ...")
     
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1)),
         ("010",      str, element.DiscreteElement(3, 2)),
@@ -128,7 +127,6 @@ if __name__ == '__main__':
     function = "DiscreteElement.formatted_str(self, *references)"
     print("Test of " + function + " ...")
     
-    #(function_to_call, expected_output)
     tests = [
         ("{}",                element.DiscreteElement(3, 0).formatted_str, 'Aka', 'Bea', 'Car'),
         ("{Aka}",             element.DiscreteElement(3, 1).formatted_str, 'Aka', 'Bea', 'Car'),
@@ -179,7 +177,6 @@ if __name__ == '__main__':
     
     function = "DiscreteElement.cardinal(self)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         (1, element.DiscreteElement(3, 1),   "cardinal"),
         (1, element.DiscreteElement(3, 2),   "cardinal"),
@@ -205,7 +202,6 @@ if __name__ == '__main__':
     
     function = "DiscreteElement.opposite(self)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("110",      str, element.DiscreteElement(3, 1).opposite()),
         ("101",      str, element.DiscreteElement(3, 2).opposite()),
@@ -231,7 +227,6 @@ if __name__ == '__main__':
     
     function = "~e / DiscreteElement.__invert__(self)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("110",      str, ~element.DiscreteElement(3, 1)),
         ("101",      str, ~element.DiscreteElement(3, 2)),
@@ -321,7 +316,6 @@ if __name__ == '__main__':
     
     function = "DiscreteElement.conjunction(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1).conjunction(element.DiscreteElement(3, 1))),
         ("000",      str, element.DiscreteElement(3, 2).conjunction(element.DiscreteElement(3, 1))),
@@ -363,7 +357,6 @@ if __name__ == '__main__':
 
     function = "DiscreteElement.conjunction_unsafe(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1).conjunction_unsafe(element.DiscreteElement(3, 1))),
         ("000",      str, element.DiscreteElement(3, 2).conjunction_unsafe(element.DiscreteElement(3, 1))),
@@ -387,7 +380,6 @@ if __name__ == '__main__':
     
     function = "DiscreteElement.intersection(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1).intersection(element.DiscreteElement(3, 1))),
         ("000",      str, element.DiscreteElement(3, 2).intersection(element.DiscreteElement(3, 1))),
@@ -429,7 +421,6 @@ if __name__ == '__main__':
     
     function = "e1 * e2 / DiscreteElement.__mul__(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1) * (element.DiscreteElement(3, 1))),
         ("000",      str, element.DiscreteElement(3, 2) * (element.DiscreteElement(3, 1))),
@@ -471,7 +462,6 @@ if __name__ == '__main__':
     
     function = "e1 & e2 / DiscreteElement.__and__(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1) & (element.DiscreteElement(3, 1))),
         ("000",      str, element.DiscreteElement(3, 2) & (element.DiscreteElement(3, 1))),
@@ -513,7 +503,6 @@ if __name__ == '__main__':
     
     function = "DiscreteElement.disjunction(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1).disjunction(element.DiscreteElement(3, 1))),
         ("011",      str, element.DiscreteElement(3, 2).disjunction(element.DiscreteElement(3, 1))),
@@ -555,7 +544,7 @@ if __name__ == '__main__':
 
     function = "DiscreteElement.disjunction_unsafe(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
+
     tests = [
         ("001",      str, element.DiscreteElement(3, 1).disjunction_unsafe(element.DiscreteElement(3, 1))),
         ("011",      str, element.DiscreteElement(3, 2).disjunction_unsafe(element.DiscreteElement(3, 1))),
@@ -579,7 +568,6 @@ if __name__ == '__main__':
 
     function = "DiscreteElement.union(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1).union(element.DiscreteElement(3, 1))),
         ("011",      str, element.DiscreteElement(3, 2).union(element.DiscreteElement(3, 1))),
@@ -621,7 +609,6 @@ if __name__ == '__main__':
     
     function = "e1 + e2 / DiscreteElement.__add__(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1) + (element.DiscreteElement(3, 1))),
         ("011",      str, element.DiscreteElement(3, 2) + (element.DiscreteElement(3, 1))),
@@ -663,7 +650,6 @@ if __name__ == '__main__':
     
     function = "e1 | e2 / DiscreteElement.__or__(self, element)"
     print("Test of " + function + " ...")
-    #(function_to_call, expected_output)
     tests = [
         ("001",      str, element.DiscreteElement(3, 1) | (element.DiscreteElement(3, 1))),
         ("011",      str, element.DiscreteElement(3, 2) | (element.DiscreteElement(3, 1))),
@@ -706,7 +692,6 @@ if __name__ == '__main__':
     function = "DiscreteElement.get_compatible_empty_element(self)"
     print("Test of " + function + " ...")
     
-    #(function_to_call, expected_output)
     tests = [
         ("000",      str, element.DiscreteElement(3, 1).get_compatible_empty_element()),
         ("000",      str, element.DiscreteElement(3, 2).get_compatible_empty_element()),
@@ -728,7 +713,6 @@ if __name__ == '__main__':
     function = "DiscreteElement.get_compatible_complete_element(self)"
     print("Test of " + function + " ...")
     
-    #(function_to_call, expected_output)
     tests = [
         ("111",      str, element.DiscreteElement(3, 1).get_compatible_complete_element()),
         ("111",      str, element.DiscreteElement(3, 2).get_compatible_complete_element()),
@@ -750,7 +734,6 @@ if __name__ == '__main__':
     function = "DiscreteElement.is_empty(self)"
     print("Test of " + function + " ...")
     
-    #(function_to_call, expected_output)
     tests = [
         (False, element.DiscreteElement(3,   1).is_empty),
         (True,  element.DiscreteElement(3,   0).is_empty),
@@ -777,7 +760,6 @@ if __name__ == '__main__':
     function = "DiscreteElement.is_complete(self)"
     print("Test of " + function + " ...")
     
-    #(function_to_call, expected_output)
     tests = [
         (False, element.DiscreteElement(3, 1).is_complete),
         (True,  element.DiscreteElement(3, 7).is_complete),
@@ -804,7 +786,6 @@ if __name__ == '__main__':
     function = "DiscreteElement.is_subset(self, element)"
     print("Test of " + function + " ...")
     
-    #(function_to_call, expected_output)
     tests = [
         (True,  element.DiscreteElement(3, 0).is_subset, element.DiscreteElement(3, 1)),
         (False, element.DiscreteElement(3, 0).is_subset, element.DiscreteElement(5, 31)),
@@ -829,7 +810,6 @@ if __name__ == '__main__':
     function = "DiscreteElement.is_superset(self, element)"
     print("Test of " + function + " ...")
     
-    #(function_to_call, expected_output)
     tests = [
         (False, element.DiscreteElement(3, 0).is_superset, element.DiscreteElement(3, 1)),
         (False, element.DiscreteElement(3, 0).is_superset, element.DiscreteElement(3, 3)),
@@ -847,8 +827,555 @@ if __name__ == '__main__':
     if len(errors) != 0:
         failed[function] = errors
     print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
-    
+    print("--------------------------------------------------------------------------------")
+
+    ################################################################################
+    ################################################################################
     ################################################################################
     
+    ##########################
+    # TESTS: IntervalElement #
+    ##########################
+
+    function = "IntervalElement.__init__(self, *intervals)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        (ValueError, element.IntervalElement, (3,0)),
+        (ValueError, element.IntervalElement, (1, 2, 3)),
+        (ValueError, element.IntervalElement, (0,3), (23, 12)),
+        (ValueError, element.IntervalElement, "ab")
+    ]
+    errors = tests_utility.exception_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "str(IntervalElement) / IntervalElement.__str__(self)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        ("[0, 1]",               str, element.IntervalElement((0,1))),
+        ("[0, 1] u [2, 3]",      str, element.IntervalElement((0,1), (2,3))),
+        ("[0, 2]",               str, element.IntervalElement((0,1), (1,2))),
+        ("[-inf, 3]",            str, element.IntervalElement((float("-inf"), 3))),
+        ("[-5, 5] u [8, 10]",    str, element.IntervalElement((-5,5), (-3,3), (-4,-2), (1, 5), (9,10), (8,9.5))),
+        ("[-inf, 0] u [1, inf]", str, element.IntervalElement((float('-inf'), 0), (1, float('inf')))),
+        ("[-inf, inf]",          str, element.IntervalElement((float('-inf'), float('inf')), (0, 1))),
+        ("[0, 1]",               str, element.IntervalElement.factory_constructor_unsafe((0,1))),
+        ("[0, 1] u [2, 3]",      str, element.IntervalElement.factory_constructor_unsafe((0,1), (2,3))),
+        ("[0, 2]",               str, element.IntervalElement.factory_constructor_unsafe((0,1), (1,2))),
+        ("[-inf, 3]",            str, element.IntervalElement.factory_constructor_unsafe((float("-inf"), 3))),
+        ("[-5, 5] u [8, 10]",    str, element.IntervalElement.factory_constructor_unsafe((-5,5), (-3,3), (-4,-2), (1, 5), (9,10), (8,9.5))),
+        ("[-inf, 0] u [1, inf]", str, element.IntervalElement.factory_constructor_unsafe((float('-inf'), 0), (1, float('inf')))),
+        ("[-inf, inf]",          str, element.IntervalElement.factory_constructor_unsafe((float('-inf'), float('inf')), (0, 1)))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.cardinal(self)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        (1,            element.IntervalElement((0, 1)),              "cardinal"),
+        (1,            element.IntervalElement((5678, 5679)),        "cardinal"),
+        (float('inf'), element.IntervalElement((float("-inf"), -4)), "cardinal"),
+        (float('inf'), element.IntervalElement((12, float("inf"))),  "cardinal"),
+        (12,           element.IntervalElement((0, 6), (12, 18)),    "cardinal"),
+    ]
+
+    errors = tests_utility.expected_property_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.opposite(self)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        ("[-inf, 0] u [1, inf]",            str, element.IntervalElement((0,1)).opposite()),
+        ("[0, 1]",                          str, element.IntervalElement((0,1)).opposite().opposite()),
+        ("[0, inf]",                        str, element.IntervalElement((float('-inf'), 0)).opposite()),
+        ("[-inf, 0]",                       str, element.IntervalElement((float('-inf'), 0)).opposite().opposite()),
+        ("[-inf, -5] u [0, 5] u [10, inf]", str, element.IntervalElement((-5, 0), (5, 10)).opposite()),
+        ("[-5, 0] u [5, 10]",               str, element.IntervalElement((-5, 0), (5, 10)).opposite().opposite())
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "~e / IntervalElement.__invert__(self)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        ("[-inf, 0] u [1, inf]",            str, ~element.IntervalElement((0,1))),
+        ("[0, 1]",                          str, ~~element.IntervalElement((0,1))),
+        ("[0, inf]",                        str, ~element.IntervalElement((float('-inf'), 0))),
+        ("[-inf, 0]",                       str, ~~element.IntervalElement((float('-inf'), 0))),
+        ("[-inf, -5] u [0, 5] u [10, inf]", str, ~element.IntervalElement((-5, 0), (5, 10))),
+        ("[-5, 0] u [5, 10]",               str, ~~element.IntervalElement((-5, 0), (5, 10)))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.exclusion(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+
+    tests = [
+        ("[-inf, 0] u [1, inf]", str, e1.exclusion(e2)),
+        ("[]",                   str, e2.exclusion(e1)),
+        ("[-5, 0] u [1, 5]",     str, e3.exclusion(e2)),
+        ("[]",                   str, e2.exclusion(e3)),
+        ("[0, 0.2]",             str, e2.exclusion(e4)),
+        ("[1, 4]",               str, e4.exclusion(e2))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "e1 - e2 / IntervalElement.__sub__(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+
+    tests = [
+        ("[-inf, 0] u [1, inf]", str, e1 - e2),
+        ("[]",                   str, e2 - e1),
+        ("[-5, 0] u [1, 5]",     str, e3 - e2),
+        ("[]",                   str, e2 - e3),
+        ("[0, 0.2]",             str, e2 - e4),
+        ("[1, 4]",               str, e4 - e2)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.conjunction(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[0, 1]",   str, e1.conjunction(e2)),
+        ("[0, 1]",   str, e2.conjunction(e1)),
+        ("[0, 1]",   str, e2.conjunction(e2)),
+        ("[0, 1]",   str, e3.conjunction(e2)),
+        ("[0, 1]",   str, e2.conjunction(e3)),
+        ("[0.2, 1]", str, e4.conjunction(e2)),
+        ("[0.2, 1]", str, e2.conjunction(e4)),
+        ("[0.2, 1] u [2, 4]", str, e5.conjunction(e4)),
+        ("[0.2, 1] u [2, 4]", str, e4.conjunction(e5))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.conjunction_unsafe(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[0, 1]",   str, e1.conjunction_unsafe(e2)),
+        ("[0, 1]",   str, e2.conjunction_unsafe(e1)),
+        ("[0, 1]",   str, e2.conjunction_unsafe(e2)),
+        ("[0, 1]",   str, e3.conjunction_unsafe(e2)),
+        ("[0, 1]",   str, e2.conjunction_unsafe(e3)),
+        ("[0.2, 1]", str, e4.conjunction_unsafe(e2)),
+        ("[0.2, 1]", str, e2.conjunction_unsafe(e4)),
+        ("[0.2, 1] u [2, 4]", str, e5.conjunction_unsafe(e4)),
+        ("[0.2, 1] u [2, 4]", str, e4.conjunction_unsafe(e5))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.intersection(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[0, 1]",   str, e1.intersection(e2)),
+        ("[0, 1]",   str, e2.intersection(e1)),
+        ("[0, 1]",   str, e2.intersection(e2)),
+        ("[0, 1]",   str, e3.intersection(e2)),
+        ("[0, 1]",   str, e2.intersection(e3)),
+        ("[0.2, 1]", str, e4.intersection(e2)),
+        ("[0.2, 1]", str, e2.intersection(e4)),
+        ("[0.2, 1] u [2, 4]", str, e5.intersection(e4)),
+        ("[0.2, 1] u [2, 4]", str, e4.intersection(e5))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "e1 * e2 / IntervalElement.__mul__(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[0, 1]",   str, e1 * e2),
+        ("[0, 1]",   str, e2 * e1),
+        ("[0, 1]",   str, e2 * e2),
+        ("[0, 1]",   str, e3 * e2),
+        ("[0, 1]",   str, e2 * e3),
+        ("[0.2, 1]", str, e4 * e2),
+        ("[0.2, 1]", str, e2 * e4),
+        ("[0.2, 1] u [2, 4]", str, e5 * e4),
+        ("[0.2, 1] u [2, 4]", str, e4 * e5)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "e1 & e2 / IntervalElement.__and__(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[0, 1]",   str, e1 & e2),
+        ("[0, 1]",   str, e2 & e1),
+        ("[0, 1]",   str, e2 & e2),
+        ("[0, 1]",   str, e3 & e2),
+        ("[0, 1]",   str, e2 & e3),
+        ("[0.2, 1]", str, e4 & e2),
+        ("[0.2, 1]", str, e2 & e4),
+        ("[0.2, 1] u [2, 4]", str, e5 & e4),
+        ("[0.2, 1] u [2, 4]", str, e4 & e5)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.disjunction(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[-inf, inf]", str, e1.disjunction(e2)),
+        ("[-inf, inf]", str, e2.disjunction(e1)),
+        ("[0, 1]",      str, e2.disjunction(e2)),
+        ("[-5, 5]",     str, e3.disjunction(e2)),
+        ("[-5, 5]",     str, e2.disjunction(e3)),
+        ("[0, 4]",      str, e4.disjunction(e2)),
+        ("[0, 4]",      str, e2.disjunction(e4)),
+        ("[0, 4]",      str, e5.disjunction(e4)),
+        ("[0, 4]",      str, e4.disjunction(e5))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.disjunction_unsafe(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[-inf, inf]", str, e1.disjunction_unsafe(e2)),
+        ("[-inf, inf]", str, e2.disjunction_unsafe(e1)),
+        ("[0, 1]",      str, e2.disjunction_unsafe(e2)),
+        ("[-5, 5]",     str, e3.disjunction_unsafe(e2)),
+        ("[-5, 5]",     str, e2.disjunction_unsafe(e3)),
+        ("[0, 4]",      str, e4.disjunction_unsafe(e2)),
+        ("[0, 4]",      str, e2.disjunction_unsafe(e4)),
+        ("[0, 4]",      str, e5.disjunction_unsafe(e4)),
+        ("[0, 4]",      str, e4.disjunction_unsafe(e5))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.union(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[-inf, inf]", str, e1.union(e2)),
+        ("[-inf, inf]", str, e2.union(e1)),
+        ("[0, 1]",      str, e2.union(e2)),
+        ("[-5, 5]",     str, e3.union(e2)),
+        ("[-5, 5]",     str, e2.union(e3)),
+        ("[0, 4]",      str, e4.union(e2)),
+        ("[0, 4]",      str, e2.union(e4)),
+        ("[0, 4]",      str, e5.union(e4)),
+        ("[0, 4]",      str, e4.union(e5))
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "e1 + e2 / IntervalElement.__add__(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[-inf, inf]", str, e1 + e2),
+        ("[-inf, inf]", str, e2 + e1),
+        ("[0, 1]",      str, e2 + e2),
+        ("[-5, 5]",     str, e3 + e2),
+        ("[-5, 5]",     str, e2 + e3),
+        ("[0, 4]",      str, e4 + e2),
+        ("[0, 4]",      str, e2 + e4),
+        ("[0, 4]",      str, e5 + e4),
+        ("[0, 4]",      str, e4 + e5)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "e1 | e2 / IntervalElement.__or__(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float('-inf'), float('inf')))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((0.2, 4))
+    e5 = element.IntervalElement((0, 1), (2, 4))
+
+    tests = [
+        ("[-inf, inf]", str, e1 | e2),
+        ("[-inf, inf]", str, e2 | e1),
+        ("[0, 1]",      str, e2 | e2),
+        ("[-5, 5]",     str, e3 | e2),
+        ("[-5, 5]",     str, e2 | e3),
+        ("[0, 4]",      str, e4 | e2),
+        ("[0, 4]",      str, e2 | e4),
+        ("[0, 4]",      str, e5 | e4),
+        ("[0, 4]",      str, e4 | e5)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.get_compatible_empty_elment(self)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        ("[]", str, element.IntervalElement((0, 1)).get_compatible_empty_element()),
+        ("[]", str, element.IntervalElement((float("-inf"), float("inf"))).get_compatible_empty_element()),
+        ("[]", str, element.IntervalElement((-5, 5)).get_compatible_empty_element()),
+        ("[]", str, element.IntervalElement((0, 1), (-18, 6), (10, 12), (6.1, 9.9)).get_compatible_empty_element()),
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.get_compatible_complete_element(self)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        ("[-inf, inf]", str, element.IntervalElement((0, 1)).get_compatible_complete_element()),
+        ("[-inf, inf]", str, element.IntervalElement((float("-inf"), float("inf"))).get_compatible_complete_element()),
+        ("[-inf, inf]", str, element.IntervalElement((-5, 5)).get_compatible_complete_element()),
+        ("[-inf, inf]", str, element.IntervalElement((0, 1), (-18, 6), (10, 12), (6.1, 9.9)).get_compatible_complete_element()),
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.is_empty(self)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        (True, element.IntervalElement().is_empty),
+        (False, element.IntervalElement((0, 1)).is_empty),
+        (False, element.IntervalElement((float("-inf"), float("inf"))).is_empty),
+        (False, element.IntervalElement((-5, 5), (0, 1), (-12, 2)).is_empty)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.is_complete(self)"
+    print("Test of " + function + " ...")
+
+    tests = [
+        (True, element.IntervalElement((float("-inf"), float("inf"))).is_complete),
+        (False, element.IntervalElement((float("-inf"), 0)).is_complete),
+        (False, element.IntervalElement((-5, float("inf"))).is_complete),
+        (False, element.IntervalElement((0, 1), (12, 22), (-5, 5)).is_complete)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+    
+    function = "IntervalElement.is_subset(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float("-inf"), float("inf")))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((-8, 0), (8, 16))
+    e5 = element.IntervalElement((float("-inf"), 12), (15, float("inf")))
+
+    tests = [
+        (False, e1.is_subset, e2),
+        (False, e1.is_subset, e4),
+        (False, e1.is_subset, e5),
+        (True,  e2.is_subset, e1),
+        (True,  e3.is_subset, e1),
+        (True,  e4.is_subset, e1),
+        (True,  e5.is_subset, e1),
+        (True,  e2.is_subset, e3),
+        (False, e3.is_subset, e2),
+        (True,  e2.is_subset, e2),
+        (True,  e4.is_subset, e4),
+        (False, e3.is_subset, e4),
+        (False, e4.is_subset, e3),
+        (True,  e3.is_subset, e5)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+
+    function = "IntervalElement.is_superset(self, element)"
+    print("Test of " + function + " ...")
+
+    e1 = element.IntervalElement((float("-inf"), float("inf")))
+    e2 = element.IntervalElement((0, 1))
+    e3 = element.IntervalElement((-5, 5))
+    e4 = element.IntervalElement((-8, 0), (8, 16))
+    e5 = element.IntervalElement((float("-inf"), 12), (15, float("inf")))
+
+    tests = [
+        (True,  e1.is_superset, e2),
+        (True,  e1.is_superset, e4),
+        (True,  e1.is_superset, e5),
+        (False, e2.is_superset, e1),
+        (False, e3.is_superset, e1),
+        (False, e4.is_superset, e1),
+        (False, e5.is_superset, e1),
+        (False, e2.is_superset, e3),
+        (True,  e3.is_superset, e2),
+        (True,  e2.is_superset, e2),
+        (True,  e4.is_superset, e4),
+        (False, e3.is_superset, e4),
+        (False, e4.is_superset, e3),
+        (False, e3.is_superset, e5),
+        (True,  e5.is_superset, e3)
+    ]
+
+    errors = tests_utility.expected_output_test(tests, False)
+    if len(errors) != 0:
+        failed[function] = errors
+    print("... done: %i/%i tests were successful!" % (len(tests)-len(errors), len(tests)))
+    print("--------------------------------------------------------------------------------")
+
+
     print('\n')
     tests_utility.browse_failures(failed)

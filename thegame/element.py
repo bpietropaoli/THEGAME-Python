@@ -31,7 +31,7 @@ from abc import ABCMeta, abstractmethod
 def check_elements_compatibility(function):
     """
     Decorator that checks that all the elements provided to 'function' are
-    compatible with each others.
+    compatible with each other.
 
     Args:
         function (func.): A set-theoretic function that takes elements as
@@ -40,7 +40,7 @@ def check_elements_compatibility(function):
         function result -- The result of the provided function.
     Raises:
         IncompatibleElementsError: If the elements provided to decorated
-        function are not compatible with each others.
+        function are not compatible with each other.
     """
     @functools.wraps(function)
     def wrapped_function(*args):
@@ -894,7 +894,7 @@ class DiscreteElement(Element):
             size (int): The size of the frame of discernement.
             number (int): The number encoding the element (default: 0).
         Returns:
-            Element -- A new element of the given size corresponding to
+            DiscreteElement -- A new element of the given size corresponding to
             the provided number (may be invalid!).
         """
         result = cls(size)
@@ -994,7 +994,7 @@ class DiscreteElement(Element):
             bigendian (bool): A boolean to indicate if the given binary string must
                 be read as big endian or little endian.
         Returns:
-            Element -- A new element corresponding to the provided binary string.
+            DiscreteElement -- A new element corresponding to the provided binary string.
         Raises:
             ValueError: If the given string is not composed only of 0s and 1s.
         """
@@ -1028,7 +1028,7 @@ class DiscreteElement(Element):
             bigendian (bool): A boolean to indicate if the given binary string must
                 be read as big endian or little endian.
         Returns:
-            Element -- A new element corresponding to the provided binary string.
+            DiscreteElement -- A new element corresponding to the provided binary string.
         Raises:
             ValueError: If the given string is not composed only of 0s and 1s.
         """
@@ -1112,7 +1112,7 @@ class DiscreteElement(Element):
         Gets the opposite of the current element.
 
         Returns:
-            Element -- A new element which is the opposite
+            DiscreteElement -- A new element which is the opposite
             of the current one.
         """
         result = DiscreteElement(self._size, (1 << self._size) - 1 - self._number)
@@ -1232,7 +1232,7 @@ class DiscreteElement(Element):
         one.
 
         Returns:
-            Element -- A new element, which is the complete set of stats
+            Element -- A new element, which is the complete set of states
             and compatible with the current element.
         """
         return DiscreteElement.get_complete_element(self._size)
@@ -1348,6 +1348,8 @@ class DiscreteElement(Element):
         return "{" + result + "}"
 
     ################################################################################
+    ################################################################################
+    ################################################################################
 
     # ******************************
     # Overriding built-in functions:
@@ -1355,7 +1357,7 @@ class DiscreteElement(Element):
 
     def __hash__(self):
         """
-        Overrides ``hash()``, necessary to enable elements being used
+        Overrides ``hash()``, necessary to enable elements to be used
         as dictionary keys.
 
         WARNING: DiscreteElements with different sizes but the same
@@ -1457,3 +1459,433 @@ class DiscreteElement(Element):
 ################################################################################
 
 
+class IntervalElement(Element):
+    """
+    Interval elements to apply belief functions to intervals of real numbers.
+    Each element might actually be composed of multiple non-overlapping intervals.
+
+    The intervals exclude their boundaries to prevent conjunctions at the frontier
+    resulting in single-valued intervals.
+    The methods never modify the element, attributes should thus not be modified manually
+    even though you're free to do it. It might create weird behaviours though.
+
+    The class provides methods marked as "unsafe". Those methods do not check the validity
+    of the created element or of the performed operations they are generally faster than
+    their safe equivalent (this is particularly noticeable for very big elements).
+
+    Attributes:
+        _card: A float providing the cardinal of the focal element. The cardinality
+            of a focal element is given by the total size of the intervals composing it.
+            Defaults to -1 and is computed when ``self.cardinal`` is accessed for the
+            first time.
+        _intervals: The list of intervals composing the focal element.
+    
+    Properties:
+        cardinal (float): The cardinal of the element. For consistency, this property
+            does not have a setter.
+    """
+
+    # *************
+    # Constructors:
+    # *************
+
+    def __init__(self, *intervals):
+        """
+        Constructs a interval element based on the provided intervals in
+        the form of 2-tuples or lists of size 2.
+
+        Args:
+            intervals (*2-tuple): A set of 2-tuples / lists of size 2 representing the
+                interval element that might be composed of multiple non-overlapping intervals.
+        Raises:
+            ValueError: If a provided interval has a lower bound greater than its upper bound
+                OR if a interval is ill-formated (less or more than 2 bounds).
+        Note: The intervals will be merged if some overlap.
+        """
+        # Check provided intervals:
+        for i in intervals:
+            if not (isinstance(i, list) or isinstance(i, tuple)):
+                raise ValueError("The provided argument was not of the required type. Expected " +
+                                 "a list of two elements or a 2-tuple, got {0} instead.".format(type(i)))
+            if len(i) != 2:
+                raise ValueError("The provided intervals should be composed of 2-tuples " + 
+                                 "or lists of size 2. Got {0} instead.".format(i))
+            if i[0] >= i[1]:
+                raise ValueError("The provided intervals should have a lower bound strictly " +
+                                 "inferior to the upper bound. Got {0} instead.".format(i))
+        
+        # Trivial case, no interval was provided:
+        if len(intervals) == 0:
+            self._intervals = [] # == empty element
+            self._card = 0
+            return
+
+        # Create the list of intervals by merging overlaps:
+        self._intervals = []
+        s = sorted(intervals) # sorts by lower bounds
+        current_interval = s[0]
+        for i in range(len(s)-1):
+            if current_interval[0] <= s[i+1][0] <= current_interval[1]:
+                current_interval = (current_interval[0], max(s[i+1][1], current_interval[1]))
+            else:
+                self._intervals.append(current_interval)
+                current_interval = s[i+1]
+        self._intervals.append(current_interval)
+
+        # Will compute the cardinal only if required:
+        self._card = -1
+
+    ################################################################################
+
+    @classmethod
+    def factory_constructor_unsafe(cls, *intervals):
+        """
+        Constructs a interval element based on the provided intervals in
+        the form of 2-tuples or lists of size 2.
+
+        WARNING: It does not check the validity of what is passed.
+        It might raise exceptions if you messed it up.
+
+        Args:
+            intervals (*2-tuple): A set of 2-tuples / lists of size 2 representing the
+                interval element that might be composed of multiple non-overlapping intervals.
+        Returns:
+            IntervalElement -- A new element based on the provided intervals.
+        Note: The intervals will be merged if some overlap.
+        """
+        # No interval provided:
+        if len(intervals) == 0:
+            return cls()
+
+        result = cls() # empty element
+        s = sorted(intervals) # sorts by lower bounds
+        current_interval = s[0]
+        for i in range(len(s)-1):
+            if current_interval[0] <= s[i+1][0] <= current_interval[1]:
+                current_interval = (current_interval[0], max(s[i+1][1], current_interval[1]))
+            else:
+                result._intervals.append(current_interval)
+                current_interval = s[i+1]
+        result._intervals.append(current_interval)
+
+        # Will compute the cardinal only if required:
+        result._card = -1
+        return result
+
+    ################################################################################
+    ################################################################################
+    ################################################################################
+
+    # ***********
+    # Properties:
+    # ***********
+
+    @property
+    def cardinal(self):
+        """
+        Gets the cardinal of the current element.
+        It corresponds to the size of the intervals composing the element.
+
+        Returns:
+            float -- The cardinal of the element.
+        """
+        if self._card != -1:
+            return self._card
+
+        self._card = 0
+        for s in self._intervals:
+            self._card += s[1] - s[0]
+        return self._card
+
+    ################################################################################
+    ################################################################################
+    ################################################################################
+
+    # **********************
+    # Set-theoretic methods:
+    # **********************
+
+    def opposite(self):
+        """
+        Gets the opposite of the current element.
+
+        Returns:
+            IntervalElement -- A new element which is the opposite
+            of the current one.
+        """
+        if self.is_empty():
+            return IntervalElement.get_complete_element()
+        
+        if self.is_complete():
+            return IntervalElement.get_empty_element()
+
+        s = []
+        # Add the interval before if necessary:
+        if self._intervals[0][0] != float("-inf"):
+            s.append((float("-inf"), self._intervals[0][0]))
+
+        # Add the intervals in between:
+        for i in range(len(self._intervals) - 1):
+            s.append((self._intervals[i][1], self._intervals[i+1][0]))
+
+        # Add the interval after if necessary:
+        if self._intervals[-1][1] != float("inf"):
+            s.append((self._intervals[-1][1], float("inf")))
+
+        return IntervalElement.factory_constructor_unsafe(*s)
+
+        
+    ################################################################################
+
+    @check_elements_compatibility
+    def conjunction(self, element):
+        """
+        Gets the conjunction/intersection of the current element with the
+        provided one.
+
+        Equivalent to ``self.intersection(element)``.
+
+        Args:
+            element (Element): The element with which the conjunction/intersection
+                is requested.
+        Returns:
+            Element -- A new element which is the conjunction/intersection of
+            the current element with the provided one.
+        Raises:
+            IncompatibleElementsError: If the current element and the provided one
+            are not compatible.
+        """
+        return self.conjunction_unsafe(element)
+
+    ################################################################################
+
+    def conjunction_unsafe(self, element):
+        """
+        Gets the conjunction/intersection of the current element with the
+        provided one.
+
+        Equivalent to ``self.intersection_unsafe(element)``.
+
+        WARNING: Does not check elements compatibility. This might create
+        unexpected behaviour.
+
+        Args:
+            element (Element): The element with which the conjunction/intersection
+                is requested.
+        Returns:
+            Element -- A new element which is the conjunction/intersection of
+            the current element with the provided one.
+        """
+        conj = []
+        for s1 in self._intervals:
+            for s2 in element._intervals:
+                if s1[1] <= s2[0]:
+                    break
+                if s1[0] >= s2[1]:
+                    continue 
+                conj.append((max(s1[0], s2[0]), min(s1[1], s2[1])))
+        return IntervalElement(*conj)
+
+    ################################################################################
+
+    @check_elements_compatibility
+    def disjunction(self, element):
+        """
+        Gets the disjunction/union of the current element with the provided one.
+
+        Equivalent to ``self.union(element)``.
+
+        Args:
+            element (Element): The element with which the disjunction/union
+                is requested.
+        Returns:
+            Element -- A new element which is the disjunction/union of the
+            current element with the provided one.
+        Raises:
+            IncompatibleElementsError: If the current element and the provided one
+            are not compatible.
+        """
+        return self.disjunction_unsafe(element)
+
+    ################################################################################
+
+    def disjunction_unsafe(self, element):
+        """
+        Gets the disjunction/union of the current element with the provided one.
+
+        Equivalent to ``self.union(element)``.
+
+        WARNING: Does not check elements compatibility. This might create
+        unexpected behaviour.
+
+        Args:
+            element (Element): The element with which the disjunction/union
+                is requested.
+        Returns:
+            Element -- A new element which is the disjunction/union of the
+            current element with the provided one.
+        """
+        return IntervalElement(*(self._intervals + element._intervals))
+
+    ################################################################################
+
+    def get_compatible_empty_element(self):
+        """
+        Gets the empty element compatible with the current element.
+
+        Returns:
+            Element -- A new element which is empty and compatible with
+            the current one.
+        """
+        return IntervalElement.get_empty_element()
+
+    ################################################################################
+
+    def get_compatible_complete_element(self):
+        """
+        Gets the complete set as an element compatible with the current one.
+
+        Returns:
+            Element -- A new element which is the complete set and is compatible
+            with the current one.
+        """
+        return IntervalElement.get_complete_element()
+
+    ################################################################################
+
+    def is_empty(self):
+        """
+        Checks if the current element is the empty set.
+
+        Returns:
+            bool -- ``True`` if the current element is empty,
+            ``False`` otherwise.
+        """
+        return len(self._intervals) == 0
+
+    ################################################################################
+
+    def is_complete(self):
+        """
+        Checks if the current element corresponds to the complete set.
+
+        Returns:
+            bool -- ``True`` if the current element corresponds to the complete
+            set, ``False`` otherwise.
+        """
+        return (len(self._intervals) == 1 and
+                self._intervals[0][0] == float("-inf") and
+                self._intervals[0][1] == float("inf"))
+
+    ################################################################################
+    ################################################################################
+    ################################################################################
+
+    # ****************
+    # Utility methods:
+    # ****************
+
+    def is_compatible(self, element):
+        """
+        Checks if the current element and the provided one are compatible.
+        They are if they both are IntervalElements.
+
+        Args:
+            element (Element): The element to check compatibility with.
+        Returns:
+            bool -- ``True`` if both elements are compatible, ``False`` otherwise.
+        """
+        if isinstance(element, IntervalElement): return True
+        else: return False
+
+    ################################################################################
+
+    def equals(self, element):
+        """
+        Checks if the current element and the provided one are equal.
+
+        Args:
+            element (Element): The element to compare to.
+        Returns:
+            bool -- ``True`` if both elements are equal, ``False`` otherwise.
+        """
+        if not self.is_compatible(element):
+            return False
+
+        if len(self._intervals) != len(element._intervals):
+            return False
+
+        for i in range(len(self._intervals)):
+            if not (self._intervals[i][0] == element._intervals[i][0] and
+                    self._intervals[i][1] == element._intervals[i][1]):
+                return False
+        return True
+
+    ################################################################################
+    ################################################################################
+    ################################################################################
+
+    # ******************************
+    # Overriding built-in functions:
+    # ******************************
+
+    def __hash__(self):
+        """
+        Overrides ``hash()``, necessary to enable elements to be use
+        as dictionary keys.
+
+        Returns:
+            int -- The hash code of the current element.
+        """
+        return self.__str__()
+
+    ################################################################################
+
+    def __str__(self):
+        """
+        Overrides ``str()``. Provides a string representation of the current element.
+
+        Returns:
+            str -- Returns a string representing the element.
+        """
+        if self.is_empty(): return "[]"
+
+        s = ""
+        for seg in self._intervals:
+            s += "[{0}, {1}] u ".format(seg[0], seg[1])
+        return s[:-3]
+
+    ################################################################################
+    ################################################################################
+    ################################################################################
+
+    # **************
+    # Class methods:    
+    # **************
+
+    @staticmethod
+    def get_empty_element():
+        """
+        Provides the empty element.
+
+        Returns:
+            IntervalElement -- A new element which is the empty set.
+        """
+        return IntervalElement()
+
+    ################################################################################
+
+    @staticmethod
+    def get_complete_element():
+        """
+        Provides the complete element / set.
+
+        Returns:
+            IntervalElement -- A new element that is the complete set.
+        """
+        return IntervalElement([float("-inf"), float("inf")])
+
+
+################################################################################
+################################################################################
+################################################################################
